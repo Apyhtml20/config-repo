@@ -1,0 +1,18 @@
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: customer-service
+              uri: lb://customer-service
+              predicates:
+                - Path=/customers/**
+            - id: ebank-service
+              uri: lb://ebank-service
+              predicates:
+                - Path=/accounts/**
+            - id: chatbot-service
+              uri: lb://chatbot-service
+              predicates:
+                - Path=/chat/**
